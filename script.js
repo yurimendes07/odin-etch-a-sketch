@@ -1,8 +1,23 @@
 const container = document.getElementById("container");
 const changeGridBtn = document.getElementById("changeGridBtn");
 
+function getRandomColor() {
+  let rgb = [];
+
+  for (let i = 0; i < 3; i++) {
+    const num = Math.floor(Math.random() * 255);
+    rgb.push(num);
+  }
+
+  return `rgb(${rgb[0]} ${rgb[1]} ${rgb[2]})`;
+}
+
 function draw(element) {
-  element.style.backgroundColor = "blue";
+  const backgroundColor = element.style.backgroundColor;
+
+  if (backgroundColor == '') {
+    element.style.backgroundColor = getRandomColor();
+  }
 }
 
 function createGrid(gridSize) {
@@ -35,6 +50,8 @@ function changeGrid() {
   } else if (newGridSize > 100) {
     alert("The requested grid size, is too big.\nThe number must be less than 100.");
     return;
+  } else if (newGridSize < 1) {
+    alert("The requested grid size, is too low.\nThe number must be more than 1.");
   }
 
   clearGrid();

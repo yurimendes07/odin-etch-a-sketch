@@ -31,8 +31,10 @@ function changeGrid() {
 
   if (isNaN(newGridSize)) {
     alert("The requested grid size, is not a number!");
+    return;
   } else if (newGridSize > 100) {
     alert("The requested grid size, is too big.\nThe number must be less than 100.");
+    return;
   }
 
   clearGrid();

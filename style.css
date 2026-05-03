@@ -10,14 +10,23 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
 }
 
 #container {
   border: medium solid black;
-  height: min(100vh, 100vw);
+  height: min(90vh, 90vw);
   aspect-ratio: 1/1;
   display: flex;
   flex-direction: column;
+}
+
+#changeGridBtn {
+  width: min(90vh, 90vw);
+  height: min(10vh, 10vw);
+  font-weight: bold;
+  font-size: 2rem;
+  border: medium solid black;
 }
 
 .row {

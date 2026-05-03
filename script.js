@@ -1,8 +1,11 @@
 const container = document.getElementById("container");
+const changeGridBtn = document.getElementById("changeGridBtn");
 
-const gridSize = 16;
+function draw(element) {
+  element.style.backgroundColor = "blue";
+}
 
-function createGrid() {
+function createGrid(gridSize) {
   for (let i = 0; i < gridSize; i++) {
     const row = document.createElement("div");
     row.classList.add("row");
@@ -11,9 +14,31 @@ function createGrid() {
     for (let i = 0; i < gridSize; i++) {
       const square = document.createElement("div");
       square.classList.add("square");
+
+      square.addEventListener("mouseenter", () => { draw(square) });
+
       row.appendChild(square);
     }
   }
 }
 
-createGrid()
+function clearGrid() {
+  container.innerHTML = '';
+}
+
+function changeGrid() {
+  const newGridSize = +prompt("Which grid size do you want?");
+
+  if (isNaN(newGridSize)) {
+    alert("The requested grid size, is not a number!");
+  } else if (newGridSize > 100) {
+    alert("The requested grid size, is too big.\nThe number must be less than 100.");
+  }
+
+  clearGrid();
+  createGrid(newGridSize);
+}
+
+changeGridBtn.addEventListener("click", changeGrid);
+
+createGrid(16);

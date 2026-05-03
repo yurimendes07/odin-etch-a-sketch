@@ -12,11 +12,21 @@ function getRandomColor() {
   return `rgb(${rgb[0]} ${rgb[1]} ${rgb[2]})`;
 }
 
+function decreaseOpacity(element) {
+  if (element.style.opacity === '') {
+    element.style.opacity = 1;
+  } else if (element.style.opacity > 0) {
+    element.style.opacity -= 0.1;
+  }
+}
+
 function draw(element) {
   const backgroundColor = element.style.backgroundColor;
 
-  if (backgroundColor == '') {
+  if (backgroundColor === '') {
     element.style.backgroundColor = getRandomColor();
+  } else {
+    decreaseOpacity(element);
   }
 }
 
@@ -52,6 +62,7 @@ function changeGrid() {
     return;
   } else if (newGridSize < 1) {
     alert("The requested grid size, is too low.\nThe number must be more than 1.");
+    return;
   }
 
   clearGrid();
